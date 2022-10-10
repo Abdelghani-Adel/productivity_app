@@ -1,4 +1,4 @@
-import NewDiary from "../../components/NewDiary/NewDiary";
+import NewDiary from "../../components/Forms/NewDiary/NewDiary";
 
 const AddDiary = () => {
   return <NewDiary />;

@@ -1,6 +1,6 @@
 import AddDiaryBtn from "../../components/Buttons/AddDiaryBtn";
 
-const Diaries = () => {
+const DiariesPage = () => {
   return (
     <div>
       <h2>Diaries</h2>
@@ -10,4 +10,4 @@ const Diaries = () => {
   );
 };
 
-export default Diaries;
+export default DiariesPage;
