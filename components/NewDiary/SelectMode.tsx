@@ -2,35 +2,36 @@ import React from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
-const options = ["Happy", "Sad", "Normal", "Excited", "Afraid"];
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const SelectMode = () => {
-  const [value, setValue] = React.useState<string | null>(options[0]);
-  const [inputValue, setInputValue] = React.useState("");
+  const [value, setValue] = React.useState<string>("Happy");
 
-  const autoCompleteChangeHandler = (event: any, newValue: string | null) => {
-    setValue(newValue);
+  const onChangeHandler = (event: any) => {
+    setValue(event.target.value);
   };
-
-  const inputChangeHandler = (event: any, newInputValue: string) => {
-    setInputValue(newInputValue);
-  };
-
-  // console.log(inputValue);
 
   return (
-    <Autocomplete
-      fullWidth
-      value={value}
-      // onChange={autoCompleteChangeHandler}
-      inputValue={inputValue}
-      onInputChange={inputChangeHandler}
-      size="small"
-      id="combo-box-demo"
-      options={options}
-      sx={{ width: 300, marginBottom: 5 }}
-      renderInput={(params) => <TextField {...params} label="Your Mode" />}
-    />
+    <FormControl fullWidth>
+      <InputLabel id="demo-simple-select-label">Your Mode ?</InputLabel>
+      <Select
+        size="small"
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={value}
+        label="Your Mode ?"
+        onChange={onChangeHandler}
+      >
+        <MenuItem value="Happy">Happy</MenuItem>
+        <MenuItem value="Sad">Sad</MenuItem>
+        <MenuItem value="Normal">Normal</MenuItem>
+        <MenuItem value="Excited">Excited</MenuItem>
+        <MenuItem value="Afraid">Afraid</MenuItem>
+      </Select>
+    </FormControl>
   );
 };
 

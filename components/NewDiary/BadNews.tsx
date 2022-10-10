@@ -10,6 +10,10 @@ import {
   ListItemText,
 } from "@mui/material";
 import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const BadNews = () => {
   const [currentInput, setCurrentInput] = useState<String>("");
@@ -17,7 +21,7 @@ const BadNews = () => {
 
   const addNews = () => {
     setBadNews((prev) => {
-      if (prev.length < 2) {
+      if (prev[0].length < 1) {
         return [currentInput];
       } else {
         return [...prev, currentInput];
@@ -29,14 +33,25 @@ const BadNews = () => {
   return (
     <Fragment>
       <TextField
+        variant="outlined"
+        color="error"
+        focused
+        className="textField"
+        size="small"
         fullWidth
         id="outlined-helperText"
-        label="Bad News"
+        label="Bad news you've heard today !"
         value={currentInput}
         onChange={(e) => setCurrentInput(e.target.value)}
         InputProps={{
           endAdornment: (
-            <Button variant="contained" onClick={addNews}>
+            <Button
+              color="error"
+              className="textField_addBtn"
+              size="small"
+              variant="contained"
+              onClick={addNews}
+            >
               Add
             </Button>
           ),
@@ -44,16 +59,24 @@ const BadNews = () => {
       />
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h6">Bad News</Typography>
           <List>
-            {badNews?.map((news) => (
-              <ListItem key={Math.random()}>
-                <ListItemAvatar>
-                  <BookmarksOutlinedIcon color="success" fontSize="small" />
-                </ListItemAvatar>
-                <ListItemText>{news}</ListItemText>
-              </ListItem>
-            ))}
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Bad News Today</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                {badNews?.map((news) => (
+                  <ListItem key={Math.random()}>
+                    <BookmarksOutlinedIcon color="success" fontSize="small" />
+                    <ListItemText>{news}</ListItemText>
+                  </ListItem>
+                ))}
+              </AccordionDetails>
+            </Accordion>
           </List>
         </Grid>
       </Grid>

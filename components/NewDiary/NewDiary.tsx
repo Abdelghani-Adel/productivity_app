@@ -11,15 +11,23 @@ import DayEvent from "./DayEvent";
 const NewDiary = () => {
   return (
     <form>
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h3" component="h3" align="center">
             Add New Form
           </Typography>
         </Grid>
 
-        <Grid item xs={6}>
-          <SelectMode />
+        <Grid item xs={4}>
+          <GoodNews />
+        </Grid>
+
+        <Grid item xs={4}>
+          <BadNews />
+        </Grid>
+
+        <Grid item xs={4}>
+          <Wishes />
         </Grid>
 
         <Grid item xs={6}>
@@ -30,20 +38,12 @@ const NewDiary = () => {
           <Achievements />
         </Grid>
 
-        <Grid item xs={6}>
-          <Wishes />
-        </Grid>
-
-        <Grid item xs={6}>
-          <GoodNews />
-        </Grid>
-
-        <Grid item xs={6}>
-          <BadNews />
-        </Grid>
-
-        <Grid item xs={6}>
+        <Grid item xs={3}>
           <DayEvent />
+        </Grid>
+
+        <Grid item xs={3}>
+          <SelectMode />
         </Grid>
       </Grid>
     </form>

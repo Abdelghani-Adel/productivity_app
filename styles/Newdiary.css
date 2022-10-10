@@ -1,0 +1,9 @@
+.textField {
+  position: relative;
+}
+
+.textField_addBtn {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}

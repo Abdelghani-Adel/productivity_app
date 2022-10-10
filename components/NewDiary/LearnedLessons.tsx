@@ -6,34 +6,50 @@ import {
   Typography,
   List,
   ListItem,
-  ListItemAvatar,
-  Avatar,
   ListItemText,
 } from "@mui/material";
 import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
-
-const dummyLessons = ["Family always comes first", "Do not wasting time"];
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const LearnedLessons = () => {
   const [currentInput, setCurrentInput] = useState<String>("");
-  const [lessons, setLessons] = useState<String[]>(dummyLessons);
+  const [lessons, setLessons] = useState<String[]>([""]);
 
   const addLesson = () => {
-    setLessons((prev) => [...prev, currentInput]);
+    setLessons((prev) => {
+      if (prev[0].length < 1) {
+        return [currentInput];
+      } else {
+        return [...prev, currentInput];
+      }
+    });
     setCurrentInput("");
   };
 
   return (
     <Fragment>
       <TextField
+        variant="outlined"
+        color="primary"
+        focused
+        className="textField"
+        size="small"
         fullWidth
         id="outlined-helperText"
-        label="Learned Lesson "
+        label="Life lesson you've learned today !"
         value={currentInput}
         onChange={(e) => setCurrentInput(e.target.value)}
         InputProps={{
           endAdornment: (
-            <Button variant="contained" onClick={addLesson}>
+            <Button
+              className="textField_addBtn"
+              size="small"
+              variant="contained"
+              onClick={addLesson}
+            >
               Add
             </Button>
           ),
@@ -41,16 +57,24 @@ const LearnedLessons = () => {
       />
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h6">Added Lessons</Typography>
           <List>
-            {lessons?.map((lesson) => (
-              <ListItem key={Math.random()}>
-                <ListItemAvatar>
-                  <BookmarksOutlinedIcon color="success" fontSize="small" />
-                </ListItemAvatar>
-                <ListItemText>{lesson}</ListItemText>
-              </ListItem>
-            ))}
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Lessons You Added</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                {lessons?.map((lesson) => (
+                  <ListItem key={Math.random()}>
+                    <BookmarksOutlinedIcon color="success" fontSize="small" />
+                    <ListItemText>{lesson}</ListItemText>
+                  </ListItem>
+                ))}
+              </AccordionDetails>
+            </Accordion>
           </List>
         </Grid>
       </Grid>

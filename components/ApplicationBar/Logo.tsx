@@ -1,4 +1,5 @@
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
 
 const Logo = () => {
   return (
@@ -6,7 +7,6 @@ const Logo = () => {
       variant="h6"
       noWrap
       component="a"
-      href="/"
       sx={{
         mr: 2,
         display: { xs: "none", md: "flex" },
@@ -18,6 +18,8 @@ const Logo = () => {
       }}
     >
       LOGO
+      {/* this is an error */}
+      {/* <Link href="/">LOGO</Link> */}
     </Typography>
   );
 };
