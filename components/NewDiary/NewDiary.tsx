@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import SelectMode from "./SelectMode";
@@ -8,7 +9,43 @@ import GoodNews from "./GoodNews";
 import BadNews from "./BadNews";
 import DayEvent from "./DayEvent";
 
+export interface props {
+  updateDiary: (update: UpdateFunParams) => void;
+}
+
+interface UpdateFunParams {
+  goodNews?: string[];
+  badNews?: string[];
+  wishes?: string[];
+  lessons?: string[];
+  achievements?: string[];
+  dayEvent?: string;
+  mode?: string;
+}
+
+interface NewDiary {
+  date: string;
+  goodNews?: string[];
+  badNews?: string[];
+  wishes?: string[];
+  lessons?: string[];
+  achievements?: string[];
+  dayEvent?: string;
+  mode: string;
+}
+
 const NewDiary = () => {
+  const [newDiary, setNewDiary] = useState<NewDiary>({
+    date: new Date().toLocaleString(),
+    mode: "Happy",
+  });
+
+  console.log(newDiary);
+
+  const updateNewDiary = (update: UpdateFunParams) => {
+    setNewDiary((prev) => ({ ...prev, ...update }));
+  };
+
   return (
     <form>
       <Grid container spacing={3}>
@@ -19,31 +56,31 @@ const NewDiary = () => {
         </Grid>
 
         <Grid item xs={4}>
-          <GoodNews />
+          <GoodNews updateDiary={updateNewDiary} />
         </Grid>
 
         <Grid item xs={4}>
-          <BadNews />
+          <BadNews updateDiary={updateNewDiary} />
         </Grid>
 
         <Grid item xs={4}>
-          <Wishes />
+          <Wishes updateDiary={updateNewDiary} />
         </Grid>
 
         <Grid item xs={6}>
-          <LearnedLessons />
+          <LearnedLessons updateDiary={updateNewDiary} />
         </Grid>
 
         <Grid item xs={6}>
-          <Achievements />
+          <Achievements updateDiary={updateNewDiary} />
         </Grid>
 
         <Grid item xs={3}>
-          <DayEvent />
+          <DayEvent updateDiary={updateNewDiary} />
         </Grid>
 
         <Grid item xs={3}>
-          <SelectMode />
+          <SelectMode updateDiary={updateNewDiary} />
         </Grid>
       </Grid>
     </form>

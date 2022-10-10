@@ -6,12 +6,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { props } from "./NewDiary";
 
-const SelectMode = () => {
+const SelectMode: React.FC<props> = (props) => {
   const [value, setValue] = React.useState<string>("Happy");
 
   const onChangeHandler = (event: any) => {
     setValue(event.target.value);
+    props.updateDiary({ mode: event.target.value });
   };
 
   return (

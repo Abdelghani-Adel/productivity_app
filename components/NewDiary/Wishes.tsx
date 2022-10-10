@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -14,10 +14,11 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { props } from "./NewDiary";
 
-const Wishes = () => {
-  const [currentInput, setCurrentInput] = useState<String>("");
-  const [wishes, setWishes] = useState<String[]>([""]);
+const Wishes: React.FC<props> = (props) => {
+  const [currentInput, setCurrentInput] = useState<string>("");
+  const [wishes, setWishes] = useState<string[]>([""]);
 
   const addWish = () => {
     setWishes((prev) => {
@@ -29,6 +30,10 @@ const Wishes = () => {
     });
     setCurrentInput("");
   };
+
+  useEffect(() => {
+    props.updateDiary({ wishes: wishes });
+  }, [wishes]);
 
   return (
     <Fragment>

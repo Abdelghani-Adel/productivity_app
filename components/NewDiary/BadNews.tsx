@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -14,10 +14,11 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { props } from "./NewDiary";
 
-const BadNews = () => {
-  const [currentInput, setCurrentInput] = useState<String>("");
-  const [badNews, setBadNews] = useState<String[]>([""]);
+const BadNews: React.FC<props> = (props) => {
+  const [currentInput, setCurrentInput] = useState<string>("");
+  const [badNews, setBadNews] = useState<string[]>([""]);
 
   const addNews = () => {
     setBadNews((prev) => {
@@ -29,6 +30,10 @@ const BadNews = () => {
     });
     setCurrentInput("");
   };
+
+  useEffect(() => {
+    props.updateDiary({ badNews: badNews });
+  }, [badNews]);
 
   return (
     <Fragment>

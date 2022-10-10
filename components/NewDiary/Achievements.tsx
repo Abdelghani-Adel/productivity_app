@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -15,10 +15,11 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { props } from "./NewDiary";
 
-const Achievements = () => {
-  const [currentInput, setCurrentInput] = useState<String>("");
-  const [achievement, setAchievements] = useState<String[]>([""]);
+const Achievements: React.FC<props> = (props) => {
+  const [currentInput, setCurrentInput] = useState<string>("");
+  const [achievements, setAchievements] = useState<string[]>([""]);
 
   const addAchievement = () => {
     setAchievements((prev) => {
@@ -30,6 +31,10 @@ const Achievements = () => {
     });
     setCurrentInput("");
   };
+
+  useEffect(() => {
+    props.updateDiary({ achievements: achievements });
+  }, [achievements]);
 
   return (
     <Fragment>
@@ -69,7 +74,7 @@ const Achievements = () => {
                 <Typography>Achievements</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {achievement?.map((achievement) => (
+                {achievements?.map((achievement) => (
                   <ListItem key={Math.random()}>
                     <BookmarksOutlinedIcon color="success" fontSize="small" />
                     <ListItemText>{achievement}</ListItemText>

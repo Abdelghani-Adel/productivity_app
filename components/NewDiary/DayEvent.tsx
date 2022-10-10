@@ -1,6 +1,10 @@
 import { TextField } from "@mui/material";
+import { props } from "./NewDiary";
 
-const DayEvent = () => {
+const DayEvent: React.FC<props> = (props) => {
+  const onBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+    props.updateDiary({ dayEvent: e.target.value });
+  };
   return (
     <TextField
       fullWidth
@@ -9,6 +13,7 @@ const DayEvent = () => {
       focused
       label="Most important event"
       size="small"
+      onBlur={onBlurHandler}
     />
   );
 };
