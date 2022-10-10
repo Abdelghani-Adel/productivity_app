@@ -8,22 +8,27 @@ const SelectMode = () => {
   const [value, setValue] = React.useState<string | null>(options[0]);
   const [inputValue, setInputValue] = React.useState("");
 
-  console.log(value, inputValue);
+  const autoCompleteChangeHandler = (event: any, newValue: string | null) => {
+    setValue(newValue);
+  };
+
+  const inputChangeHandler = (event: any, newInputValue: string) => {
+    setInputValue(newInputValue);
+  };
+
+  // console.log(inputValue);
 
   return (
     <Autocomplete
+      fullWidth
       value={value}
-      onChange={(event: any, newValue: string | null) => {
-        setValue(newValue);
-      }}
+      // onChange={autoCompleteChangeHandler}
       inputValue={inputValue}
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
-      }}
+      onInputChange={inputChangeHandler}
       size="small"
       id="combo-box-demo"
       options={options}
-      sx={{ width: 300 }}
+      sx={{ width: 300, marginBottom: 5 }}
       renderInput={(params) => <TextField {...params} label="Your Mode" />}
     />
   );
