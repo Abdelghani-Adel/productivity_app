@@ -27,6 +27,24 @@ const ApplicationBar = () => {
                 Diaries
               </Button>
             </Link>
+
+            <Link href="/todos">
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                Todos
+              </Button>
+            </Link>
+
+            <Link href="/quotes">
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                Quotes
+              </Button>
+            </Link>
+
+            <Link href="/habits">
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                Habit Tracking
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

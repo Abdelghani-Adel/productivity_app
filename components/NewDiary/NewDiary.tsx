@@ -40,8 +40,6 @@ const NewDiary = () => {
     mode: "Happy",
   });
 
-  console.log(newDiary);
-
   const updateNewDiary = (update: UpdateFunParams) => {
     setNewDiary((prev) => ({ ...prev, ...update }));
   };
