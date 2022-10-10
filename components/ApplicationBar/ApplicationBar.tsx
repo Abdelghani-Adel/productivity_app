@@ -16,13 +16,17 @@ const ApplicationBar = () => {
           <Logo />
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button sx={{ my: 2, color: "white", display: "block" }}>
-              <Link href={"/"}>Home</Link>
-            </Button>
+            <Link href={"/"}>
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                Home
+              </Button>
+            </Link>
 
-            <Button sx={{ my: 2, color: "white", display: "block" }}>
-              <Link href="/diaries"> Diaries</Link>
-            </Button>
+            <Link href="/diaries">
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                Diaries
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>
