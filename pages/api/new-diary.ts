@@ -8,8 +8,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
       const data = req.body;
 
-      // console.log(data);
-
       const client = await MongoClient.connect(
         "mongodb+srv://AbdelghaniAdel:New.pass.vue@cluster0.3z5cwhk.mongodb.net/productivedb?retryWrites=true&w=majority"
       );

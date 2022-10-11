@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import type { RootState } from "../store";
 
@@ -60,6 +60,10 @@ const diarySlice = createSlice({
       };
     },
   },
+});
+
+export const sendDiaries = createAsyncThunk("diaries/get-diaries", async () => {
+  const response = await fetch("/api/new-diary");
 });
 
 /** Selectors */
