@@ -1,6 +1,8 @@
 import AddDiaryBtn from "../../components/Buttons/AddDiaryBtn";
+import { MongoClient } from "mongodb";
 
-const DiariesPage = () => {
+const DiariesPage = (props: any) => {
+  console.log(props);
   return (
     <div>
       <h2>Diaries</h2>
@@ -12,9 +14,30 @@ const DiariesPage = () => {
 
 export async function getStaticProps() {
   // fetch data from an API
+  const client = await MongoClient.connect(
+    "mongodb+srv://AbdelghaniAdel:New.pass.vue@cluster0.3z5cwhk.mongodb.net/productivedb?retryWrites=true&w=majority"
+  );
+
+  const db = client.db();
+  const diariesCollections = db.collection("diaries");
+  const diaries = await diariesCollections.find().toArray();
+
+  client.close();
 
   return {
-    props: {},
+    props: {
+      diaries: diaries.map((diary) => ({
+        id: diary._id.toString(),
+        date: diary.date,
+        mode: diary.mode,
+        wishes: diary.wishes,
+        achievements: diary.achievements,
+        badNews: diary.badNews,
+        goodNews: diary.goodNews,
+        // dayEvent: diary.dayEvent,
+        lessons: diary.lessons,
+      })),
+    },
     revalidate: 10,
   };
 }
