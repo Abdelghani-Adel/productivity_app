@@ -4,7 +4,7 @@ import type { RootState } from "../store";
 
 // Declaring the type of our state
 interface Diary {
-  id: string;
+  _id: string;
   date: string;
   mode: string;
   wishes: string[];
@@ -23,7 +23,7 @@ export interface DiaryState {
 const initialState: DiaryState = {
   diaries: {
     "0": {
-      id: "0",
+      _id: "0",
       date: "10/10/2022",
       mode: "Excited",
       wishes: ["Become a frontend developer"],
@@ -41,11 +41,11 @@ const diarySlice = createSlice({
   initialState: initialState,
   reducers: {
     addDiary: (state, action: PayloadAction<Diary>) => {
-      const newKey = String(action.payload.id);
+      const newKey = String(action.payload._id);
       state.diaries[newKey] = action.payload;
     },
     editDiary: (state, action: PayloadAction<Diary>) => {
-      const existKey = String(action.payload.id);
+      const existKey = String(action.payload._id);
       state.diaries[existKey] = action.payload;
     },
     removeDiary: (state, action: PayloadAction<string>) => {

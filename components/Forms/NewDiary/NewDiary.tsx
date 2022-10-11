@@ -8,6 +8,8 @@ import Wishes from "./Wishes";
 import GoodNews from "./GoodNews";
 import BadNews from "./BadNews";
 import DayEvent from "./DayEvent";
+import { useAppDispatch } from "../../../store/hooks";
+import { diaryActions } from "../../../store/slices/diarySlice";
 
 export interface props {
   updateDiary: (update: UpdateFunParams) => void;
@@ -24,19 +26,28 @@ interface UpdateFunParams {
 }
 
 interface NewDiary {
+  _id: string;
   date: string;
-  goodNews?: string[];
-  badNews?: string[];
-  wishes?: string[];
-  lessons?: string[];
-  achievements?: string[];
-  dayEvent?: string;
+  goodNews: string[];
+  badNews: string[];
+  wishes: string[];
+  lessons: string[];
+  achievements: string[];
+  dayEvent: string;
   mode: string;
 }
 
 const NewDiary = () => {
+  const dispatch = useAppDispatch();
   const [newDiary, setNewDiary] = useState<NewDiary>({
+    _id: String(Math.random()),
     date: new Date().toLocaleString(),
+    goodNews: [""],
+    badNews: [""],
+    wishes: [""],
+    lessons: [""],
+    achievements: [""],
+    dayEvent: "",
     mode: "Happy",
   });
 
@@ -46,13 +57,18 @@ const NewDiary = () => {
 
   const submitHandler = (e: any) => {
     e.preventDefault();
+
+    // Updating the Redux
+    dispatch(diaryActions.addDiary(newDiary));
+
+    // Sending the data to the API
     async function sendToAPI() {
       const response = await fetch("/api/new-diary", {
         method: "POST",
         body: JSON.stringify(newDiary),
       });
     }
-    sendToAPI();
+    // sendToAPI();
   };
 
   return (
