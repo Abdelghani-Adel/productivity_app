@@ -39,14 +39,16 @@ const diarySlice = createSlice({
   name: "diaries",
   initialState: initialState,
   reducers: {
-    addDiary: (state, action) => {
-      // Add your logic here
+    addDiary: (state, action: PayloadAction<Diary>) => {
+      const newKey = String(action.payload.id);
+      state.diaries[newKey] = action.payload;
     },
-    editDiary: (state, action) => {
-      // Add your logic here
+    editDiary: (state, action: PayloadAction<Diary>) => {
+      const existKey = String(action.payload.id);
+      state.diaries[existKey] = action.payload;
     },
-    removeDiary: (state, action) => {
-      // Add your logic here
+    removeDiary: (state, action: PayloadAction<string>) => {
+      delete state.diaries[action.payload];
     },
   },
 });
