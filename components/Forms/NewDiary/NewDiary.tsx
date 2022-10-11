@@ -44,8 +44,19 @@ const NewDiary = () => {
     setNewDiary((prev) => ({ ...prev, ...update }));
   };
 
+  const submitHandler = (e: any) => {
+    e.preventDefault();
+    async function sendToAPI() {
+      const response = await fetch("/api/new-diary", {
+        method: "POST",
+        body: JSON.stringify(newDiary),
+      });
+    }
+    sendToAPI();
+  };
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h3" component="h3" align="center">
@@ -81,6 +92,8 @@ const NewDiary = () => {
           <SelectMode updateDiary={updateNewDiary} />
         </Grid>
       </Grid>
+
+      <button>Add</button>
     </form>
   );
 };

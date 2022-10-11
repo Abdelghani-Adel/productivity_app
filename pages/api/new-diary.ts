@@ -5,20 +5,28 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
-    const data = req.body;
+    try {
+      const data = req.body;
 
-    const client = await MongoClient.connect(
-      "mongodb+srv://AbdelghaniAdel:New.pass.vue@cluster0.3z5cwhk.mongodb.net/diaries?retryWrites=true&w=majority"
-    );
+      // console.log(data);
 
-    const db = client.db();
-    const diariesCollections = db.collection("diaries");
-    const result = await diariesCollections.insertOne(data);
-    console.log(result);
+      const client = await MongoClient.connect(
+        "mongodb+srv://AbdelghaniAdel:New.pass.vue@cluster0.3z5cwhk.mongodb.net/productivedb?retryWrites=true&w=majority"
+      );
 
-    client.close();
+      const db = client.db();
+      const diariesCollections = db.collection("diaries");
 
-    res.status(201);
+      console.log(typeof data);
+      const result = await diariesCollections.insertOne(JSON.parse(data));
+      console.log(result);
+
+      client.close();
+
+      res.status(201).json({ mesage: "inserted" });
+    } catch (e) {
+      console.log("Failed");
+    }
   }
 }
 
