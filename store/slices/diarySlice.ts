@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
 import type { RootState } from "../store";
 
 // Declaring the type of our state
@@ -49,6 +50,14 @@ const diarySlice = createSlice({
     },
     removeDiary: (state, action: PayloadAction<string>) => {
       delete state.diaries[action.payload];
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      console.log(action.payload);
+      return {
+        ...state,
+      };
     },
   },
 });

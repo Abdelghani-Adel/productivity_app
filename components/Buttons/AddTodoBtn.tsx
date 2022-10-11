@@ -7,7 +7,11 @@ const AddTodoBtn = () => {
   return (
     <Link href="/todos/add">
       <Tooltip title="" placement="bottom" arrow>
-        <Button variant="contained" startIcon={<DownloadDoneOutlinedIcon />}>
+        <Button
+          variant="contained"
+          color="success"
+          startIcon={<DownloadDoneOutlinedIcon />}
+        >
           Add Todo
         </Button>
       </Tooltip>
