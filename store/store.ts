@@ -1,8 +1,9 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import diarySlice from "./slices/diarySlice";
 
 const store = configureStore({
   reducer: {
-    // Reducers will be added here
+    diaries: diarySlice.reducer,
   },
 });
 
