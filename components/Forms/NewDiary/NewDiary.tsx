@@ -9,7 +9,7 @@ import GoodNews from "./GoodNews";
 import BadNews from "./BadNews";
 import DayEvent from "./DayEvent";
 import { useAppDispatch } from "../../../store/hooks";
-import { diaryActions } from "../../../store/slices/diarySlice";
+import { diaryActions, getDiaries } from "../../../store/slices/diarySlice";
 
 export interface props {
   updateDiary: (update: UpdateFunParams) => void;
@@ -59,7 +59,7 @@ const NewDiary = () => {
     e.preventDefault();
 
     // Updating the Redux
-    dispatch(diaryActions.addDiary(newDiary));
+    // dispatch(diaryActions.addDiary(newDiary));
 
     // Sending the data to the API
     async function sendToAPI() {
@@ -68,7 +68,10 @@ const NewDiary = () => {
         body: JSON.stringify(newDiary),
       });
     }
-    // sendToAPI();
+    sendToAPI();
+
+    // Fetching again using thunk
+    dispatch(getDiaries());
   };
 
   return (

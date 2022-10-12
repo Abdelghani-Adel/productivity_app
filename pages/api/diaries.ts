@@ -9,11 +9,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   );
   const db = client.db();
   const diariesCollections = db.collection("diaries");
-  const diaries = diariesCollections.find().toArray();
+  const diaries = await diariesCollections.find().toArray();
 
-  console.log(diaries);
-
-  res.status(200).json({ diaries: diaries });
+  res.status(200).json({ diaries });
 }
 
 export default handler;

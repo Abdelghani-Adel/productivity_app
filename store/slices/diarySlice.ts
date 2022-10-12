@@ -52,16 +52,25 @@ const diarySlice = createSlice({
       delete state.diaries[action.payload];
     },
   },
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
-      console.log(action.payload);
-      return {
-        ...state,
-      };
-    },
+  extraReducers: (builder) => {
+    builder.addCase(getDiaries.fulfilled, (state, { payload }) => {
+      state.diaries = payload;
+    });
   },
 });
 
+/** Thunk */
+export const getDiaries = createAsyncThunk("diaries/getDiaries", async () => {
+  const response = await fetch("/api/diaries");
+
+  const data = await response.json();
+
+  console.log(data);
+
+  return data;
+});
+
+/** Thunk */
 export const sendDiaries = createAsyncThunk("diaries/get-diaries", async () => {
   const response = await fetch("/api/new-diary");
 });
