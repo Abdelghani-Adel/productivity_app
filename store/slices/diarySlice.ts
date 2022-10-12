@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { get } from "https";
 import { HYDRATE } from "next-redux-wrapper";
 import type { RootState } from "../store";
 
@@ -53,33 +54,34 @@ const diarySlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(sendDiaries.fulfilled, (state, { payload }) => {
-      state.diaries = payload;
+    builder.addCase(sendDiary.fulfilled, (state, { payload }) => {
+      state.diaries = payload.updatedData;
     });
   },
 });
 
 /** Thunk Get */
-export const getDiaries = createAsyncThunk("diaries/getDiaries", async () => {
-  const response = await fetch("/api/diaries");
-  const data = await response.json();
-  return data;
-});
+// export const getDiaries = createAsyncThunk("diaries/getDiaries", async () => {
+//   const response = await fetch("/api/diaries");
+//   const data = await response.json();
+//   return data;
+// });
 
 /** Thunk Send */
-export const sendDiaries = createAsyncThunk(
+export const sendDiary = createAsyncThunk(
   "diaries/addDiary",
   async (diary: Diary) => {
+    /** Sending the diary to the API */
     const response = await fetch("/api/new-diary", {
       method: "POST",
       body: JSON.stringify(diary),
     });
 
-    const updated = await response.json();
+    /** Getting the updated data from the API - I've configured this in 'pages/api/new-diary.ts' */
+    const updatedData = await response.json();
 
-    console.log(updated);
-
-    return updated;
+    /** Returning the update to be used into the builder reducer */
+    return updatedData;
   }
 );
 

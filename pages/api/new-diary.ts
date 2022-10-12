@@ -8,22 +8,26 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
       const data = req.body;
 
+      /** Connecting to the database */
       const client = await MongoClient.connect(
         "mongodb+srv://AbdelghaniAdel:New.pass.vue@cluster0.3z5cwhk.mongodb.net/productivedb?retryWrites=true&w=majority"
       );
-
       const db = client.db();
-      const diariesCollections = db.collection("diaries");
 
-      console.log(typeof data);
+      /** Selecting the needed collection from the database */
+      const diariesCollections = db.collection("diaries");
+      /** Inserting the new document in the collection */
       const result = await diariesCollections.insertOne(JSON.parse(data));
 
-      const newCollection = db.collection("diaries");
-      const updated = await newCollection.find().toArray();
+      /** Selecting the collection again after inserting to get the updated one */
+      const updatedCollection = db.collection("diaries");
+      const updatedData = await updatedCollection.find().toArray();
 
+      /** Closing the database connection */
       client.close();
 
-      res.status(201).json({ updated });
+      /** Sending the updated data to be used in updating the local state */
+      res.status(201).json({ updatedData });
     } catch (e) {
       console.log("Failed");
     }

@@ -11,9 +11,10 @@ import DayEvent from "./DayEvent";
 import { useAppDispatch } from "../../../store/hooks";
 import {
   diaryActions,
-  getDiaries,
-  sendDiaries,
+  // getDiaries,
+  sendDiary,
 } from "../../../store/slices/diarySlice";
+import Router from "next/router";
 
 export interface props {
   updateDiary: (update: UpdateFunParams) => void;
@@ -74,7 +75,8 @@ const NewDiary = () => {
     // }
     // sendToAPI();
 
-    dispatch(sendDiaries(newDiary));
+    dispatch(sendDiary(newDiary));
+    Router.back();
 
     // Fetching again using thunk
     // dispatch(getDiaries());
