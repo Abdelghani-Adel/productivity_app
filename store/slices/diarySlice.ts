@@ -61,11 +61,11 @@ const diarySlice = createSlice({
 });
 
 /** Thunk Get */
-// export const getDiaries = createAsyncThunk("diaries/getDiaries", async () => {
-//   const response = await fetch("/api/diaries");
-//   const data = await response.json();
-//   return data;
-// });
+export const getDiaries = createAsyncThunk("diaries/getDiaries", async () => {
+  const response = await fetch("/api/diaries");
+  const data = await response.json();
+  return data;
+});
 
 /** Thunk Send */
 export const sendDiary = createAsyncThunk(

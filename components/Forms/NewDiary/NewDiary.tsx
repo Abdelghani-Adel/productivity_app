@@ -63,23 +63,8 @@ const NewDiary = () => {
   const submitHandler = (e: any) => {
     e.preventDefault();
 
-    // Updating the Redux
-    // dispatch(diaryActions.addDiary(newDiary));
-
-    // Sending the data to the API
-    // async function sendToAPI() {
-    //   const response = await fetch("/api/new-diary", {
-    //     method: "POST",
-    //     body: JSON.stringify(newDiary),
-    //   });
-    // }
-    // sendToAPI();
-
     dispatch(sendDiary(newDiary));
     Router.back();
-
-    // Fetching again using thunk
-    // dispatch(getDiaries());
   };
 
   return (
