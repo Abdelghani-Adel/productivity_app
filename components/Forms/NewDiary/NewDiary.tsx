@@ -9,7 +9,11 @@ import GoodNews from "./GoodNews";
 import BadNews from "./BadNews";
 import DayEvent from "./DayEvent";
 import { useAppDispatch } from "../../../store/hooks";
-import { diaryActions, getDiaries } from "../../../store/slices/diarySlice";
+import {
+  diaryActions,
+  getDiaries,
+  sendDiaries,
+} from "../../../store/slices/diarySlice";
 
 export interface props {
   updateDiary: (update: UpdateFunParams) => void;
@@ -62,16 +66,18 @@ const NewDiary = () => {
     // dispatch(diaryActions.addDiary(newDiary));
 
     // Sending the data to the API
-    async function sendToAPI() {
-      const response = await fetch("/api/new-diary", {
-        method: "POST",
-        body: JSON.stringify(newDiary),
-      });
-    }
-    sendToAPI();
+    // async function sendToAPI() {
+    //   const response = await fetch("/api/new-diary", {
+    //     method: "POST",
+    //     body: JSON.stringify(newDiary),
+    //   });
+    // }
+    // sendToAPI();
+
+    dispatch(sendDiaries(newDiary));
 
     // Fetching again using thunk
-    dispatch(getDiaries());
+    // dispatch(getDiaries());
   };
 
   return (

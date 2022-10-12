@@ -53,27 +53,35 @@ const diarySlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getDiaries.fulfilled, (state, { payload }) => {
+    builder.addCase(sendDiaries.fulfilled, (state, { payload }) => {
       state.diaries = payload;
     });
   },
 });
 
-/** Thunk */
+/** Thunk Get */
 export const getDiaries = createAsyncThunk("diaries/getDiaries", async () => {
   const response = await fetch("/api/diaries");
-
   const data = await response.json();
-
-  console.log(data);
-
   return data;
 });
 
-/** Thunk */
-export const sendDiaries = createAsyncThunk("diaries/get-diaries", async () => {
-  const response = await fetch("/api/new-diary");
-});
+/** Thunk Send */
+export const sendDiaries = createAsyncThunk(
+  "diaries/addDiary",
+  async (diary: Diary) => {
+    const response = await fetch("/api/new-diary", {
+      method: "POST",
+      body: JSON.stringify(diary),
+    });
+
+    const updated = await response.json();
+
+    console.log(updated);
+
+    return updated;
+  }
+);
 
 /** Selectors */
 export const selectDiaries = (state: RootState) => state.diaries;

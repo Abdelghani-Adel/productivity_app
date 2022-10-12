@@ -17,11 +17,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       console.log(typeof data);
       const result = await diariesCollections.insertOne(JSON.parse(data));
-      console.log(result);
+
+      const newCollection = db.collection("diaries");
+      const updated = await newCollection.find().toArray();
 
       client.close();
 
-      res.status(201).json({ mesage: "inserted" });
+      res.status(201).json({ updated });
     } catch (e) {
       console.log("Failed");
     }

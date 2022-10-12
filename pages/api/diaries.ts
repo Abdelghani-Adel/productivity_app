@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-// /api/new-diary
+// /api/diaries
 import type { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -8,6 +8,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     "mongodb+srv://AbdelghaniAdel:New.pass.vue@cluster0.3z5cwhk.mongodb.net/productivedb?retryWrites=true&w=majority"
   );
   const db = client.db();
+
   const diariesCollections = db.collection("diaries");
   const diaries = await diariesCollections.find().toArray();
 
