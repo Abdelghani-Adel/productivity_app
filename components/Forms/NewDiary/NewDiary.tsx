@@ -9,12 +9,9 @@ import GoodNews from "./GoodNews";
 import BadNews from "./BadNews";
 import DayEvent from "./DayEvent";
 import { useAppDispatch } from "../../../store/hooks";
-import {
-  diaryActions,
-  // getDiaries,
-  sendDiary,
-} from "../../../store/slices/diarySlice";
+import { DiaryType, sendDiary } from "../../../store/slices/diarySlice";
 import Router from "next/router";
+import Button from "@mui/material/Button";
 
 export interface props {
   updateDiary: (update: UpdateFunParams) => void;
@@ -30,21 +27,9 @@ interface UpdateFunParams {
   mode?: string;
 }
 
-interface NewDiary {
-  _id: string;
-  date: string;
-  goodNews: string[];
-  badNews: string[];
-  wishes: string[];
-  lessons: string[];
-  achievements: string[];
-  dayEvent: string;
-  mode: string;
-}
-
 const NewDiary = () => {
   const dispatch = useAppDispatch();
-  const [newDiary, setNewDiary] = useState<NewDiary>({
+  const [newDiary, setNewDiary] = useState<DiaryType>({
     _id: String(Math.random()),
     date: new Date().toLocaleString(),
     goodNews: [""],
@@ -105,7 +90,9 @@ const NewDiary = () => {
         </Grid>
       </Grid>
 
-      <button>Add</button>
+      <Button type="submit" variant="contained">
+        Add
+      </Button>
     </form>
   );
 };

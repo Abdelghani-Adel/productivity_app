@@ -4,7 +4,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import type { RootState } from "../store";
 
 // Declaring the type of our state
-interface Diary {
+export interface DiaryType {
   _id: string;
   date: string;
   mode: string;
@@ -17,7 +17,7 @@ interface Diary {
 }
 export interface DiaryState {
   diaries: {
-    [key: string]: Diary;
+    [key: string]: DiaryType;
   };
 }
 
@@ -41,11 +41,11 @@ const diarySlice = createSlice({
   name: "diaries",
   initialState: initialState,
   reducers: {
-    addDiary: (state, action: PayloadAction<Diary>) => {
+    addDiary: (state, action: PayloadAction<DiaryType>) => {
       const newKey = String(action.payload._id);
       state.diaries[newKey] = action.payload;
     },
-    editDiary: (state, action: PayloadAction<Diary>) => {
+    editDiary: (state, action: PayloadAction<DiaryType>) => {
       const existKey = String(action.payload._id);
       state.diaries[existKey] = action.payload;
     },
@@ -56,6 +56,9 @@ const diarySlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(sendDiary.fulfilled, (state, { payload }) => {
       state.diaries = payload.updatedData;
+    });
+    builder.addCase(getDiaries.fulfilled, (state, { payload }) => {
+      state.diaries = payload.diaries;
     });
   },
 });
@@ -70,7 +73,7 @@ export const getDiaries = createAsyncThunk("diaries/getDiaries", async () => {
 /** Thunk Send */
 export const sendDiary = createAsyncThunk(
   "diaries/addDiary",
-  async (diary: Diary) => {
+  async (diary: DiaryType) => {
     /** Sending the diary to the API */
     const response = await fetch("/api/new-diary", {
       method: "POST",
@@ -86,7 +89,8 @@ export const sendDiary = createAsyncThunk(
 );
 
 /** Selectors */
-export const selectDiaries = (state: RootState) => state.diaries;
+export const selectDiaries = (state: RootState) =>
+  Object.values(state.diaries.diaries);
 
 export const diaryActions = diarySlice.actions;
 export default diarySlice;

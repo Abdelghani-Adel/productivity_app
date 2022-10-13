@@ -12,6 +12,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const diariesCollections = db.collection("diaries");
   const diaries = await diariesCollections.find().toArray();
 
+  console.log(diaries);
+
   res.status(200).json({ diaries });
 }
 
