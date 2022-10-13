@@ -10,9 +10,9 @@ const DayEvent: React.FC<props> = (props) => {
       fullWidth
       variant="outlined"
       color="primary"
-      focused
       label="Most important event"
       size="small"
+      className="textField"
       onBlur={onBlurHandler}
     />
   );

@@ -41,7 +41,6 @@ const GoodNews: React.FC<props> = (props) => {
       <TextField
         variant="outlined"
         color="success"
-        focused
         className="textField"
         size="small"
         fullWidth

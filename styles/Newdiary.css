@@ -1,9 +1,7 @@
 .textField {
   position: relative;
+  background-color: #fff;
 }
 
 .textField_addBtn {
-  position: absolute;
-  right: 0;
-  height: 100%;
 }

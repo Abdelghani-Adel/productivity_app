@@ -56,37 +56,42 @@ const NewDiary = () => {
     <form onSubmit={submitHandler}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Typography variant="h3" component="h3" align="center">
-            Add New Form
+          <Typography
+            variant="h3"
+            component="h3"
+            align="center"
+            color="primary"
+          >
+            Add New Diary
           </Typography>
-        </Grid>
-
-        <Grid item xs={4}>
-          <GoodNews updateDiary={updateNewDiary} />
-        </Grid>
-
-        <Grid item xs={4}>
-          <BadNews updateDiary={updateNewDiary} />
-        </Grid>
-
-        <Grid item xs={4}>
-          <Wishes updateDiary={updateNewDiary} />
-        </Grid>
-
-        <Grid item xs={6}>
-          <LearnedLessons updateDiary={updateNewDiary} />
-        </Grid>
-
-        <Grid item xs={6}>
-          <Achievements updateDiary={updateNewDiary} />
-        </Grid>
-
-        <Grid item xs={3}>
-          <DayEvent updateDiary={updateNewDiary} />
         </Grid>
 
         <Grid item xs={3}>
           <SelectMode updateDiary={updateNewDiary} />
+        </Grid>
+
+        <Grid item xs={9}>
+          <DayEvent updateDiary={updateNewDiary} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <GoodNews updateDiary={updateNewDiary} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <BadNews updateDiary={updateNewDiary} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Wishes updateDiary={updateNewDiary} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <LearnedLessons updateDiary={updateNewDiary} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Achievements updateDiary={updateNewDiary} />
         </Grid>
       </Grid>
 

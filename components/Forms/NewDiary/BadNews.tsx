@@ -40,7 +40,6 @@ const BadNews: React.FC<props> = (props) => {
       <TextField
         variant="outlined"
         color="error"
-        focused
         className="textField"
         size="small"
         fullWidth

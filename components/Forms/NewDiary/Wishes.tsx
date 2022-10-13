@@ -40,7 +40,6 @@ const Wishes: React.FC<props> = (props) => {
       <TextField
         variant="outlined"
         color="primary"
-        focused
         className="textField"
         size="small"
         fullWidth

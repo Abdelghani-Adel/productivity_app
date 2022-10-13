@@ -18,13 +18,12 @@ const SelectMode: React.FC<props> = (props) => {
 
   return (
     <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">Your Mode ?</InputLabel>
       <Select
         size="small"
+        className="textField"
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={value}
-        label="Your Mode ?"
         onChange={onChangeHandler}
       >
         <MenuItem value="Happy">Happy</MenuItem>
