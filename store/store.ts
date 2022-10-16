@@ -1,12 +1,16 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import diarySlice from "./slices/diarySlice";
+import habitSlice from "./slices/habitSlice";
 import qutoeSlice from "./slices/quoteSlice";
+import todoSlice from "./slices/todoSlice";
 
 const store = configureStore({
   reducer: {
     diaries: diarySlice.reducer,
     quotes: qutoeSlice.reducer,
+    todos: todoSlice.reducer,
+    habits: habitSlice.reducer,
   },
 });
 
