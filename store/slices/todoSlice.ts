@@ -3,7 +3,7 @@ import type { RootState } from "../store";
 
 export interface TodoType {
   _id: string;
-  task: string;
+  todo: string;
   deadline: string;
 }
 
@@ -17,7 +17,7 @@ const initialState: TodoState = {
   todos: {
     "0": {
       _id: "0",
-      task: "Finish coding the home page",
+      todo: "Finish coding the home page",
       deadline: "10/17/2022",
     },
   },
@@ -47,7 +47,7 @@ export const getTodos = createAsyncThunk("todos/getTodos", async () => {
 export const sendTodo = createAsyncThunk(
   "todos/addTodo",
   async (todo: TodoType) => {
-    const response = await fetch("/api/new-tood", {
+    const response = await fetch("/api/new-todo", {
       method: "POST",
       body: JSON.stringify(todo),
     });
