@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { get } from "https";
-import { HYDRATE } from "next-redux-wrapper";
 import type { RootState } from "../store";
 
 // Declaring the type of our state

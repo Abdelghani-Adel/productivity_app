@@ -1,17 +1,8 @@
-import { useRouter } from "next/router";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { MongoClient } from "mongodb";
-import { DiaryType, selectDiaries } from "../../store/slices/diarySlice";
-import { useAppSelector } from "../../store/hooks";
-import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
-
-/*
-  // Fetch and update the state from API on the application loads first
-  // New & Update => Fire an API call through a thunk, and the thunk will take care of updating the state.
-  // Read the data from the state, and fetch to the API
-  // Why 
-*/
+import Paper from "@mui/material/Paper";
+import { useRouter } from "next/router";
+import { useAppSelector } from "../../store/hooks";
+import { selectDiaries } from "../../store/slices/diarySlice";
 
 const DiaryDetails = (props: any) => {
   const router = useRouter();
@@ -36,18 +27,14 @@ const DiaryDetails = (props: any) => {
     </p>
   ));
 
-  const wishes = diary.wishes.map((whish) => <p key={whish}>{whish}</p>);
-  const achievements = diary.achievements.map((achieve) => (
-    <p key={achieve}>{achieve}</p>
-  ));
-
   return (
-    <Paper>
+    <Paper variant="outlined">
       <Container>
+        <h2 style={{ textAlign: "center" }}>My Diary On {diaryDate}</h2>
         <p>
-          At this day {diaryDate}, exactly at {diaryTime} I was {diary.mode}
+          At this day {diaryDate}, exactly at {diaryTime} I was {diary.mode},
+          because these things have happened today:
         </p>
-        <p>because these things have happened today:</p>
 
         {diary.goodNews[0].trim().length > 0 && <>{goodNews}</>}
         {diary.badNews[0].trim().length > 0 && <>{badNews}</>}
@@ -65,6 +52,28 @@ const DiaryDetails = (props: any) => {
             {diary.achievements.map((achieve, index) => (
               <p key={Math.random()}>
                 {index + 1}- {achieve},
+              </p>
+            ))}
+          </>
+        )}
+
+        {diary.lessons[0].trim().length > 0 && (
+          <>
+            <p>I've learned some important lessons today: </p>
+            {diary.lessons.map((lesson, index) => (
+              <p key={Math.random()}>
+                {index + 1}- {lesson}
+              </p>
+            ))}
+          </>
+        )}
+
+        {diary.wishes[0].trim().length > 0 && (
+          <>
+            <p>I've some wishes that I hope to achieve in the future:</p>
+            {diary.wishes.map((wish, index) => (
+              <p key={Math.random()}>
+                {index + 1}- {wish}
               </p>
             ))}
           </>
