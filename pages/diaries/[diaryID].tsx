@@ -5,27 +5,27 @@ import { useAppSelector } from "../../store/hooks";
 import { selectDiaries } from "../../store/slices/diarySlice";
 
 const DiaryDetails = () => {
-  const router = useRouter();
-  const diaryID = router.query.diaryID;
+  // const router = useRouter();
+  // const diaryID = router.query.diaryID;
 
-  const diaries = useAppSelector(selectDiaries);
-  const diaryIndex = diaries.findIndex((diary) => diary._id === diaryID);
-  const diary = diaries[diaryIndex];
+  // const diaries = useAppSelector(selectDiaries);
+  // const diaryIndex = diaries.findIndex((diary) => diary._id === diaryID);
+  // const diary = diaries[diaryIndex];
 
-  // const diaryTime = new Date(diary.date).toLocaleTimeString();
-  // const diaryDate = new Date(diary.date).toLocaleDateString();
+  // // const diaryTime = new Date(diary.date).toLocaleTimeString();
+  // // const diaryDate = new Date(diary.date).toLocaleDateString();
 
-  const badNews = diary.badNews.map((news, index) => (
-    <p key={news}>
-      {index + 1}- {news}
-    </p>
-  ));
+  // const badNews = diary.badNews.map((news, index) => (
+  //   <p key={news}>
+  //     {index + 1}- {news}
+  //   </p>
+  // ));
 
-  const goodNews = diary.goodNews.map((news, index) => (
-    <p key={news}>
-      {index + 1}- {news}
-    </p>
-  ));
+  // const goodNews = diary.goodNews.map((news, index) => (
+  //   <p key={news}>
+  //     {index + 1}- {news}
+  //   </p>
+  // ));
 
   return (
     <Paper variant="outlined">
