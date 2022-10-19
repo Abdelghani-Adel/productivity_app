@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import Layout from "../components/Layout/Layout";
 import store from "../store/store";
 import "../styles/globals.css";
-import "../styles/NewDiary.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
