@@ -48,7 +48,7 @@ const DiaryDetails = () => {
 
         {diary.achievements[0].trim().length > 0 && (
           <>
-            <p>I've made some achievements today in my life</p>
+            <p>I have made some achievements today in my life</p>
             {diary.achievements.map((achieve, index) => (
               <p key={Math.random()}>
                 {index + 1}- {achieve},
@@ -59,7 +59,7 @@ const DiaryDetails = () => {
 
         {diary.lessons[0].trim().length > 0 && (
           <>
-            <p>I've learned some important lessons today: </p>
+            <p>I have learned some important lessons today: </p>
             {diary.lessons.map((lesson, index) => (
               <p key={Math.random()}>
                 {index + 1}- {lesson}
@@ -70,7 +70,7 @@ const DiaryDetails = () => {
 
         {diary.wishes[0].trim().length > 0 && (
           <>
-            <p>I've some wishes that I hope to achieve in the future:</p>
+            <p>I have some wishes that I hope to achieve in the future:</p>
             {diary.wishes.map((wish, index) => (
               <p key={Math.random()}>
                 {index + 1}- {wish}
