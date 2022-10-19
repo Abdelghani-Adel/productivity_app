@@ -30,13 +30,13 @@ const DiaryDetails = () => {
   return (
     <Paper variant="outlined">
       <Container>
-        {/* <h2 style={{ textAlign: "center" }}>My Diary On {diaryDate}</h2> */}
+        {/* <h2 style={{ textAlign: "center" }}>My Diary On {diaryDate}</h2>
         <p>
-          {/* At this day {diaryDate}, exactly at {diaryTime} I was {diary.mode}, */}
+          At this day {diaryDate}, exactly at {diaryTime} I was {diary.mode},
           because these things have happened today:
-        </p>
+        </p> */}
 
-        {diary.goodNews[0].trim().length > 0 && <>{goodNews}</>}
+        {/* {diary.goodNews[0].trim().length > 0 && <>{goodNews}</>}
         {diary.badNews[0].trim().length > 0 && <>{badNews}</>}
 
         {diary.dayEvent.trim().length > 0 && (
@@ -44,9 +44,9 @@ const DiaryDetails = () => {
             And the most important thing that happened today is that{" "}
             {diary.dayEvent}
           </p>
-        )}
+        )} */}
 
-        {diary.achievements[0].trim().length > 0 && (
+        {/* {diary.achievements[0].trim().length > 0 && (
           <>
             <p>I have made some achievements today in my life</p>
             {diary.achievements.map((achieve, index) => (
@@ -55,9 +55,9 @@ const DiaryDetails = () => {
               </p>
             ))}
           </>
-        )}
+        )} */}
 
-        {diary.lessons[0].trim().length > 0 && (
+        {/* {diary.lessons[0].trim().length > 0 && (
           <>
             <p>I have learned some important lessons today: </p>
             {diary.lessons.map((lesson, index) => (
@@ -77,7 +77,7 @@ const DiaryDetails = () => {
               </p>
             ))}
           </>
-        )}
+        )}  */}
       </Container>
     </Paper>
   );
