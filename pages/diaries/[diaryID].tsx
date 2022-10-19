@@ -12,8 +12,8 @@ const DiaryDetails = () => {
   const diaryIndex = diaries.findIndex((diary) => diary._id === diaryID);
   const diary = diaries[diaryIndex];
 
-  const diaryTime = new Date(diary.date).toLocaleTimeString();
-  const diaryDate = new Date(diary.date).toLocaleDateString();
+  // const diaryTime = new Date(diary.date).toLocaleTimeString();
+  // const diaryDate = new Date(diary.date).toLocaleDateString();
 
   const badNews = diary.badNews.map((news, index) => (
     <p key={news}>
@@ -30,9 +30,9 @@ const DiaryDetails = () => {
   return (
     <Paper variant="outlined">
       <Container>
-        <h2 style={{ textAlign: "center" }}>My Diary On {diaryDate}</h2>
+        {/* <h2 style={{ textAlign: "center" }}>My Diary On {diaryDate}</h2> */}
         <p>
-          At this day {diaryDate}, exactly at {diaryTime} I was {diary.mode},
+          {/* At this day {diaryDate}, exactly at {diaryTime} I was {diary.mode}, */}
           because these things have happened today:
         </p>
 
