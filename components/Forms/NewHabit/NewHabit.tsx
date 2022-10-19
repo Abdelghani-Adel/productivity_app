@@ -1,11 +1,9 @@
-import { Grid } from "@mui/material";
-import Typography from "@mui/material/Typography";
+import { Grid, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
-import { TextField } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Router from "next/router";
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../store/hooks";
-import { QuoteType, sendQuote } from "../../../store/slices/quoteSlice";
-import Router from "next/router";
 import { HabitType, sendHabit } from "../../../store/slices/habitSlice";
 import SelectRepetition from "./SelectRepetition";
 

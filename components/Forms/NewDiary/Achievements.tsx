@@ -1,20 +1,18 @@
-import React, { Fragment, useState, useEffect } from "react";
+import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
-  TextField,
   Button,
   Grid,
-  Typography,
   List,
   ListItem,
-  ListItemAvatar,
-  Avatar,
   ListItemText,
+  TextField,
+  Typography,
 } from "@mui/material";
-import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
 import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import React, { Fragment, useEffect, useState } from "react";
 import { props } from "./NewDiary";
 
 const Achievements: React.FC<props> = (props) => {

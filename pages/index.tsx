@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     dispatch(getDiaries());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

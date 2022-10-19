@@ -10,7 +10,7 @@ import AddDiaryBtn from "../../components/Buttons/AddDiaryBtn";
 import { useAppSelector } from "../../store/hooks";
 import { selectDiaries } from "../../store/slices/diarySlice";
 
-const DiariesPage = (props: any) => {
+const DiariesPage = () => {
   const diaries = useAppSelector(selectDiaries);
 
   return (

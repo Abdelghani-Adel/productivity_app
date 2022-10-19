@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useAppSelector } from "../../store/hooks";
 import { selectDiaries } from "../../store/slices/diarySlice";
 
-const DiaryDetails = (props: any) => {
+const DiaryDetails = () => {
   const router = useRouter();
   const diaryID = router.query.diaryID;
 
